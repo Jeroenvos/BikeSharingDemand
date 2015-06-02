@@ -79,6 +79,7 @@ For simplicity I took the date as hours from the start of the dataset. Also I in
 For example 'hour of the day' has no linear relation. Therefore I tested those attributes on curvilinearity by squaring them.
 
 ![Regression models ](img/LinearRegression.png "Regression models")
+
 This Model 11 shows all significant attributes. Those coefficients are used to calculate the predicted count of bike demand. 
 
 This rough estimation gave already a Root Mean Squared Logarithmic Error (RMSLE) of 1.31.
