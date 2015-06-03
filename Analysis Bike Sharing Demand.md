@@ -8,7 +8,7 @@ Thereafter the prediction is performed. Also the different methods and tools use
 "Bike sharing systems are a means of renting bicycles where the process of obtaining membership, rental, and bike return is automated via a network of kiosk locations throughout a city. Using these systems, people are able rent a bike from a one location and return it to a different place on an as-needed basis." [[Kaggle](https://www.kaggle.com/c/bike-sharing-demand). 
 By predicting the demand of bicycles, the allocation of resources can be optimized.
 
-Hourly rental data is provided with weather information. the data span 2011 to 2013. The train data consists of the first 19 days and the test data the rest of the month.
+Hourly rental data is provided with weather information. The data span 2011 to 2013. The train data consists of the first 19 days and the test data the rest of the month.
 
 ## Exploration
 ### Qualitative exploration
@@ -97,22 +97,23 @@ I used only a simple linear regression model (with curvilinear attributes). More
 In the next part I'll improve the predictions.
 
 
-# Using Random Forest
+## Using Random Forest
 For the Random Forest model I used R, because there are relatively simple packages to deploy RF algorithms.
-I used the Random Forest for regression. The random forest automatically balances  between the bias and variance resulting in an optimal regression model (almost) without overfitting.
+I used the Random Forest algorithm for regression. The random forest automatically balances between the bias and variance (by averaging the decision trees) resulting in an optimal regression model (almost) without overfitting. 
 I tested whether the Random Forest was suited for the bike demand dataset by cross validating. 
 In the code below, the implementation of the Random Forest algorithm as well as the cross validation of the RF is explained.
 The R file can also be found in [this file](BikeSharingPrediction.R).
 
 ```splus
 #Settings
-##set working directorry on my local computer
+##set working directory on my local computer. Change this to the path where your script is located
 setwd("/Users/jeroenvos/Dropbox/1 Private/GITHUB/BikeSharingDemand")
 
 ## clear workspace
 rm(list=ls())
 
 ## Load libraries
+### install package by running install.packages("randomForest")
 library(randomForest)
 #set seed in case of random number that are used
 set.seed(123)
@@ -140,7 +141,7 @@ error.cv <- sapply(result, "[[", "error.cv")
 matplot(result[[1]]$n.var, cbind(rowMeans(error.cv), error.cv), type="l",
         lwd=c(2, rep(1, ncol(error.cv))), col=1, lty=1, log="x",
         xlab="Number of variables", ylab="CV Error")
-# This validation returns the MSE iso RMSLE 
+# This validation returns the MSE instead of RMSLE 
 ## ** running the validation takes a lot of time**
 
 
@@ -157,12 +158,14 @@ write.csv(preddata, "data/submission.csv", row.names=FALSE, quote=FALSE)
 Submitting the results to Kaggle shows a RMSLE of: 0.50620
 
 
-# Future work
+## Future work
 * More models/ algorithms  can be tested and evaluated.
 * I can optimize the sparsity by experiment with the different attributes used in the random forest model.
-* I can elaborate on the relations within dates and time.
-* Now I only used the default random forest class. An optimum of RF parameters could be tested.
-* Because casual and registered are included I maybe could predict them separately. However, for now I wouldn't know how to use this in my models.
+* I can elaborate more on the relations within e.g. dates and time. 
+* Now I only used the default random forest class. I could experiment with different variables.
+* Because 'casual' and 'registered' are included I maybe could predict them separately. However, for now I am not sure how to use this properly in my models.
+* To better communicate the analyses and results I should perform everything in just one environment e.g. in R.
+
 
 
 
