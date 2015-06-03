@@ -3,6 +3,7 @@
 In this analysis the demand of bikes is predicted.
 First the interpretation of the problem is stated, then the data is explored, by looking at the data qualitatively and then quantitatively with some exploratory analyses. Out out these explorations assumptions of the behaviour are made.
 Thereafter the prediction is performed. Also the different methods and tools used are explained. The results will be evaluated and recommendations for future work are given.
+At the end of this document some efforts I made to improve the predictions are listed. The corresponding script can be found in [BikeSharingPredictionV2](BikeSharingPredictionV2.R)
 
 ##Problem definition
 "Bike sharing systems are a means of renting bicycles where the process of obtaining membership, rental, and bike return is automated via a network of kiosk locations throughout a city. Using these systems, people are able rent a bike from a one location and return it to a different place on an as-needed basis." [[Kaggle]](https://www.kaggle.com/c/bike-sharing-demand). 
@@ -93,7 +94,7 @@ This Model 11 shows all significant attributes. Those coefficients are used to c
 This rough estimation gave already a Root Mean Squared Logarithmic Error (RMSLE) of 1.31.
 
 ### First conclusions
-After some data preparation like correcting for nominal and cyclical attributes and taking e.g. the increase of demand into account their can be already said quite something about the bike demand. However, there is still a lot room for improvement.
+After some data preparation, like correcting for nominal and cyclical attributes and taking e.g. the increase of demand into account there already can be  said quite something about the bike demand. However, there is still a lot room for improvement.
 I used only a simple linear regression model (with curvilinear attributes). More advanced models like random forest, a very popular algorithm in predictions, can be deployed to improve the predictions and decrease the RMSLE. There may be more relations I did not find with these exploration. Some interaction effects or other effect that are not caused by weather but does significantly affect the bike demand. For example coupons that are issued during the year, a peak of tourists visiting the city, or some kind of 'happy hours'. Also I could define the attributes more fine grained and determine an early friday rushhour or lunch times etc.
 
 In the next part I'll improve the predictions.
@@ -161,13 +162,28 @@ Submitting the results to Kaggle shows a RMSLE of: 0.50620
 
 
 ## Future work
-* More models/ algorithms  can be tested and evaluated.
+* More models/ algorithms can be tested and evaluated.
 * I can optimize the sparsity by experiment with the different attributes used in the random forest model.
+  * This is done by dimensionality reduction: only include significant attributes and test whether including the attributes improves the model significantly (partial F-test)
+  * Also Principal component analysis can be used to reduce the dimensionality.
 * I can elaborate more on the relations within e.g. dates and time. 
 * Now I only used the default random forest class. I could experiment with different variables.
-* Because 'casual' and 'registered' are included I maybe could predict them separately. However, for now I am not sure how to use this properly in my models.
+* Because 'casual' and 'registered' are included I  could first predict them separately. 
 * To better communicate the analyses and results I should perform everything in just one environment e.g. in R.
 
 
+# Predictions V2
+The improvements I made here are first tested by cross validation and afterwards submitted on Kaggle.
+
+###Casual and registered
+The first iteration I made is to split predictions for casual and registered users. I assume that they behave differently. For example: casual users rent bikes on holidays and weekends, where registered users probably rent bikes during rush hours.
+
+### Datetime
+Also I (finally) created 'year' 'month of the year' and 'day of the month' to better see the behaviour over time. day of the month appeared to be counter productive since the train set always consists of the first 20 days and the test set of the last ±10. I therefore only included year and month
+
+### Dimensions
+I played around with adding and leaving out some attributes. Since most work ws already done in the linear regression models, at first sight the attribute set seems to perform well.
+
+The final score I got was 0.48209
 
 
