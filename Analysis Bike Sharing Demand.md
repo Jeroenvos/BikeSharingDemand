@@ -3,7 +3,7 @@
 In this analysis the demand of bikes is predicted.
 First the interpretation of the problem is stated, then the data is explored, by looking at the data qualitatively and then quantitatively with some exploratory analyses. Out out these explorations assumptions of the behaviour are made.
 Thereafter the prediction is performed. Also the different methods and tools used are explained. The results will be evaluated and recommendations for future work are given.
-At the end of this document some efforts I made to improve the predictions are listed. The corresponding script can be found in [BikeSharingPredictionV2](BikeSharingPredictionV2.R)
+At the end of this document some efforts I made to improve the predictions are listed. The corresponding scripts can be found in [BikeSharingPrediction.R](BikeSharingPrediction.R) and [BikeSharingPredictionV2](BikeSharingPredictionV2.R).
 
 ##Problem definition
 "Bike sharing systems are a means of renting bicycles where the process of obtaining membership, rental, and bike return is automated via a network of kiosk locations throughout a city. Using these systems, people are able rent a bike from a one location and return it to a different place on an as-needed basis." [[Kaggle]](https://www.kaggle.com/c/bike-sharing-demand). 
