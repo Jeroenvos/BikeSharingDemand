@@ -1,14 +1,14 @@
 # Bike Sharing Demand
 ## Introduction
 In this analysis the demand of bikes is predicted.
-First the interpretation of the problem is stated, then the data is explored, first by looking at the data qualitatively and then quantitatively with some exploratory analyses. Out out these explorations assumptions of the behaviour are made.
+First the interpretation of the problem is stated, then the data is explored, by looking at the data qualitatively and then quantitatively with some exploratory analyses. Out out these explorations assumptions of the behaviour are made.
 Thereafter the prediction is performed. Also the different methods and tools used are explained. The results will be evaluated and recommendations for future work are given.
 
 ##Problem definition
-"Bike sharing systems are a means of renting bicycles where the process of obtaining membership, rental, and bike return is automated via a network of kiosk locations throughout a city. Using these systems, people are able rent a bike from a one location and return it to a different place on an as-needed basis." [[Kaggle](https://www.kaggle.com/c/bike-sharing-demand). 
+"Bike sharing systems are a means of renting bicycles where the process of obtaining membership, rental, and bike return is automated via a network of kiosk locations throughout a city. Using these systems, people are able rent a bike from a one location and return it to a different place on an as-needed basis." [[Kaggle]](https://www.kaggle.com/c/bike-sharing-demand). 
 By predicting the demand of bicycles, the allocation of resources can be optimized.
 
-Hourly rental data is provided with weather information. The data span 2011 to 2013. The train data consists of the first 19 days and the test data the rest of the month.
+Hourly rental data is provided together with weather information. The data spans 2011 to 2013. The train data consists of the first 19 days and the test data the rest of the month.
 
 ## Exploration
 ### Qualitative exploration
@@ -84,11 +84,11 @@ REGRESSION
 ```
 I only included the dichotomous (dummy variables), interval and ratio attributes. The nominal attributes are split by indicator coding into: summer, winter, spring and fall, and better, good, bad and worse for season and weather respectively.
 For simplicity I took the date as hours from the start of the dataset. Also I included hour of the day which is attribute 'hours'. I am aware of its cyclic behaviour but for now I took it as a (curve)linear relation.
-For example 'hour of the day' has no linear relation. Therefore I tested all the attributes on curvilinearity addid a squared attribute.
+For example 'hour of the day' has no linear relation. Therefore I tested all the attributes on curvilinearity by adding a squared attribute.
 
 ![Regression models ](img/LinearRegression.png "Regression models")
 
-This Model 11 shows all significant attributes. Those coefficients are used to calculate the predicted count of bike demand. 
+This Model 11 shows all significant attributes. Those coefficients are used to calculate the predicted count of bike demand in [this worksheet](first results.xlsx). 
 
 This rough estimation gave already a Root Mean Squared Logarithmic Error (RMSLE) of 1.31.
 
@@ -104,7 +104,7 @@ For the Random Forest model I used R, because there are relatively simple packag
 I used the Random Forest algorithm for regression. The random forest automatically balances between the bias and variance (by averaging the decision trees) resulting in an optimal regression model (almost) without overfitting. 
 I tested whether the Random Forest was suited for the bike demand dataset by cross validating. 
 In the code below, the implementation of the Random Forest algorithm as well as the cross validation of the RF is explained.
-The R file can also be found in [this file](BikeSharingPrediction.R).
+The R script can also be found in [this file](BikeSharingPrediction.R).
 
 ```splus
 #Settings
