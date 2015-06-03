@@ -1,3 +1,4 @@
+# Predicting the Bike Sharing Demand
 This repository contains my efforts to predict the bike demand in Washington D.C. 
 The datasets used are from the Kaggle competition on predicting the [Bike Sharing Demand](https://www.kaggle.com/c/bike-sharing-demand/)
 
