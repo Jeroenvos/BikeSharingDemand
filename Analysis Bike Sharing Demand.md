@@ -14,21 +14,23 @@ Hourly rental data is provided with weather information. The data span 2011 to 2
 ### Qualitative exploration
 The dataset contains the following attributes:
 
-Predictors
+####Predictors
+
 |Attribute | Data level | Description|
 ---|---|---|
-|datetime | Timestamp | Used to determine behaviour over time
-|season | Nominal | In the summer and spring probably more bicycles rent
-|holiday | Dichotomous | When holiday is true probably more bicycles are rented
-|workingday | Dichotomous | In cities where the bikes are used for leisure less bikes are rent during working days, when mainly used by e.g. commuters, probably more bikes are used during working days
-|weather | Ordinal | When the weather is better (1=best, 2=wost) more bikes are rent
-|temp | Interval | Temp probably results in multicollinearity with atemp since they measure practically the same.
-|atemp | Interval | Atemp is probably then a better predictor, since this has more influence on customers' behaviour
-|humidity | Ratio | Probably the less humid more bikes are rent
-|windspeed | Ratio | Probably the less windy more bikes are rent
+|datetime | Timestamp | Used to determine behaviour over time |
+|season | Nominal | In the summer and spring probably more bicycles rent |
+|holiday | Dichotomous | When holiday is true probably more bicycles are rented |
+|workingday | Dichotomous | In cities where the bikes are used for leisure less bikes are rent during working days, when mainly used by e.g. commuters, probably more bikes are used during working days |
+|weather | Ordinal | When the weather is better (1=best, 2=wost) more bikes are rent |
+|temp | Interval | Temp probably results in multicollinearity with atemp since they measure practically the same |
+|atemp | Interval | Atemp is probably then a better predictor, since this has more influence on customers' behaviour |
+|humidity | Ratio | Probably the less humid more bikes are rent |
+|windspeed | Ratio | Probably the less windy more bikes are rent |
 
 
-Dependent attributes
+####Dependent attributes
+
 |Attribute | Data level | Description|
 |---|---|---|
 |casual | Ratio |  number of non-registered user rentals initiated
